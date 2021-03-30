@@ -7,6 +7,7 @@ import CakeStats from 'views/Home/components/CakeStats'
 import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
 import EarnAPYCard from 'views/Home/components/EarnAPYCard'
 import EarnAssetCard from 'views/Home/components/EarnAssetCard'
+import WinCard from 'views/Home/components/WinCard'
 
 const Cards = styled(BaseLayout)`
   align-items: stretch;

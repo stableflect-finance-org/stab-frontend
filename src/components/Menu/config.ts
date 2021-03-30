@@ -86,10 +86,6 @@ const config: MenuEntry[] = [
         label: 'Blog',
         href: 'https://stableflect.medium.com',
       },
-      {
-        label: 'Merch',
-        href: 'https://pancakeswap.creator-spring.com/',
-      },
     ],
   },
 ]

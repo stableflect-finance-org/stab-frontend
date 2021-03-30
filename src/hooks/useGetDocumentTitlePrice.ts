@@ -12,7 +12,10 @@ const useGetDocumentTitlePrice = () => {
       })}`
 
   useEffect(() => {
-    document.title = `Stableflect STAB${cakePriceUsdString}`
-  }, [cakePriceUsdString])
+    document.title = `Stableflect STAB - $${Number(cakePriceUsd).toLocaleString(undefined, {
+      minimumFractionDigits: 3,
+      maximumFractionDigits: 3,
+    })}`
+  })
 }
 export default useGetDocumentTitlePrice
