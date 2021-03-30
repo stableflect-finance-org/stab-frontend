@@ -42,13 +42,13 @@ const Collectibles = () => {
       <Text as="p">
         {TranslateString(
           999,
-          'Pancake Collectibles are special ERC-721 NFTs that can be used on the PancakeSwap platform.',
+          'Pancake Collectibles are special ERC-721 NFTs that can be used on the Stableflect platform.',
         )}
       </Text>
       <Text as="p">
         {TranslateString(
           999,
-          "NFTs in this user's wallet that aren't approved Pancake Collectibles won't be shown here.",
+          "NFTs in this user's wallet that aren't approved Stableflect Collectibles won't be shown here.",
         )}
       </Text>
       {nftsInWallet.length > 0 && (
@@ -66,7 +66,7 @@ const Collectibles = () => {
         </Flex>
       )}
       <Flex alignItems="center" justifyContent="flex-end">
-        <Link to="/collectibles">{TranslateString(999, 'See all approved Pancake Collectibles')}</Link>
+        <Link to="/collectibles">{TranslateString(999, 'See all approved Stableflect Collectibles')}</Link>
         <ChevronRightIcon />
       </Flex>
     </>
