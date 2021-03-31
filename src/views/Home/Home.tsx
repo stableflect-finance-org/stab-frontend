@@ -11,26 +11,6 @@ import EarnAPYCard from 'views/Home/components/EarnAPYCard'
 import EarnAssetCard from 'views/Home/components/EarnAssetCard'
 import WinCard from 'views/Home/components/WinCard'
 
-const Hero = styled.div`
-  align-items: center;
-  background-image: none;
-  background-repeat: no-repeat;
-  background-position: top center;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin: auto;
-  margin-bottom: 32px;
-  padding-top: 10px;
-  text-align: center;
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    background-image: url('/images/long-term-benefits.svg'), url('/images/dual-yield.svg');
-    background-position: left center, right center;
-    height: 165px;
-    padding-top: 0;
-  }
-`
 
 const Cards = styled(BaseLayout)`
   align-items: stretch;
@@ -81,12 +61,6 @@ const Home: React.FC = () => {
 
   return (
     <Page>
-      <Hero>
-        <Heading as="h1" size="xl" mb="28px" color="secondary">
-          {TranslateString(578, 'Stableflect Finance')}
-        </Heading>
-        <Text>{TranslateString(578, 'Innovative stable token re-imagining the concept of yield generation.')}</Text>
-      </Hero>
       <div>
         <Cards>
           <FarmStakingCard />
