@@ -1,5 +1,5 @@
 import { parseISO, format } from 'date-fns'
-import { Ifo, PoolConfig, FarmConfig } from 'config/constants/types'
+import { Ifo, PoolConfig, FarmConfig, StabConfig } from 'config/constants/types'
 import { SettingsType } from './types'
 
 export const getIfos = (data) => {
@@ -73,11 +73,34 @@ export const getFarms = (data) => {
   return farms
 }
 
+export const getStabs = (data) => {
+  const stabs: StabConfig = data.map((stab) => {
+    return {
+      pid: stab.pid,
+      lpSymbol: stab.lp_symbol,
+      lpAddresses: {
+        56: stab.lp_mainnet_address,
+        97: '0xE66790075ad839978fEBa15D4d8bB2b415556a1D',
+      },
+      tokenSymbol: stab?.token?.symbol,
+      tokenAddresses: {
+        56: stab?.token?.mainnet_address,
+        97: '0xa35062141fa33bca92ce69fed37d0e8908868aae',
+      },
+      quoteTokenSymbol: stab?.quote_token?.symbol,
+      quoteTokenAdresses: stab?.quote_token?.mainnet_address,
+      isCommunity: stab?.is_community,
+    }
+  })
+  return stabs
+}
+
 export const getFormattedData = (type: SettingsType, data) => {
   const handler = {
     IFO: () => getIfos(data),
     POOL: () => getPools(data),
     FARM: () => getFarms(data),
+    STAB: () => getStabs(data),
   }
 
   const factory = () => {

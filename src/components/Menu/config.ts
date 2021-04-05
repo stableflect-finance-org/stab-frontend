@@ -26,6 +26,11 @@ const config: MenuEntry[] = [
     href: '/farms',
   },
   {
+    label: 'Exchange STABs',
+    icon: 'TradeIcon',
+    href: '/stab',
+  },
+  {
     label: 'Pools',
     icon: 'PoolIcon',
     href: '/pools',
@@ -76,7 +81,7 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Github',
-        href: 'https://github.com/stableflect',
+        href: 'https://github.com/stableflect-finance-org',
       },
       {
         label: 'Docs',

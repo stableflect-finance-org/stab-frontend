@@ -3,6 +3,33 @@ const tokens = {
     symbol: 'BNB',
     projectLink: 'https://www.binance.com/',
   },
+  stab: {
+    symbol: 'STAB',
+    address: {
+      56: '',
+      97: '0x6dAb76f34aC8cc56ad5a14AEDe0820684BACc64a',
+    },
+    decimals: 9,
+    projectLink: 'https://app.stableflect.finance/',
+  },
+  rStab: {
+    symbol: 'rSTAB',
+    address: {
+      56: '',
+      97: '0x6dAb76f34aC8cc56ad5a14AEDe0820684BACc64a',
+    },
+    decimals: 9,
+    projectLink: 'https://app.stableflect.finance/',
+  },
+  govStab: {
+    symbol: 'gStab',
+    address: {
+      56: '',
+      97: '0x67DefF5407AA16E202511683097a5e90c0cC6749',
+    },
+    decimals: 9,
+    projectLink: 'https://app.stableflect.finance/',
+  },
   cake: {
     symbol: 'CAKE',
     address: {

@@ -11,12 +11,13 @@ import {
   fetchFarmsPublicDataAsync,
   fetchPoolsPublicDataAsync,
   fetchPoolsUserDataAsync,
+  fetchStabsPublicDataAsync,
   push as pushToast,
   remove as removeToast,
   clear as clearToast,
   setBlock,
 } from './actions'
-import { State, Farm, Pool, ProfileState, TeamsState, AchievementState, PriceState } from './types'
+import {State, Farm, Pool, ProfileState, TeamsState, AchievementState, PriceState, Stab} from './types'
 import { fetchProfile } from './profile'
 import { fetchTeam, fetchTeams } from './teams'
 import { fetchAchievements } from './achievements'
@@ -27,6 +28,7 @@ export const useFetchPublicData = () => {
   const { slowRefresh } = useRefresh()
   useEffect(() => {
     dispatch(fetchFarmsPublicDataAsync())
+    dispatch(fetchStabsPublicDataAsync())
     dispatch(fetchPoolsPublicDataAsync())
   }, [dispatch, slowRefresh])
 
@@ -66,6 +68,34 @@ export const useFarmUser = (pid) => {
     tokenBalance: farm.userData ? new BigNumber(farm.userData.tokenBalance) : new BigNumber(0),
     stakedBalance: farm.userData ? new BigNumber(farm.userData.stakedBalance) : new BigNumber(0),
     earnings: farm.userData ? new BigNumber(farm.userData.earnings) : new BigNumber(0),
+  }
+}
+
+// STAB tokens
+
+export const useStabs = (): Stab[] => {
+  const stabs = useSelector((state: State) => state.stabs.data)
+  return stabs
+}
+
+export const useStabFromPid = (pid): Stab => {
+  const stab = useSelector((state: State) => state.stabs.data.find((f) => f.pid === pid))
+  return stab
+}
+
+export const useStabFromSymbol = (lpSymbol: string): Stab => {
+  const stab = useSelector((state: State) => state.stabs.data.find((f) => f.lpSymbol === lpSymbol))
+  return stab
+}
+
+export const useStabUser = (pid) => {
+  const stab = useStabFromPid(pid)
+
+  return {
+    allowance: stab.userData ? new BigNumber(stab.userData.allowance) : new BigNumber(0),
+    tokenBalance: stab.userData ? new BigNumber(stab.userData.tokenBalance) : new BigNumber(0),
+    stakedBalance: stab.userData ? new BigNumber(stab.userData.stakedBalance) : new BigNumber(0),
+    earnings: stab.userData ? new BigNumber(stab.userData.earnings) : new BigNumber(0),
   }
 }
 

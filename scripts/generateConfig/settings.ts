@@ -17,5 +17,10 @@ const settings: SettingsObject[] = [
     url: `${BASE_URL}/farms`,
     type: SettingsType.FARM,
   },
+  {
+    name: 'stabs',
+    url: `${BASE_URL}/stab`,
+    type: SettingsType.STAB,
+  },
 ]
 export default settings

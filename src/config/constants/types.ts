@@ -56,6 +56,21 @@ export interface FarmConfig {
   }
 }
 
+export interface StabConfig {
+  pid: number
+  lpSymbol: string
+  lpAddresses: Address
+  token: Token
+  quoteToken: Token
+  multiplier?: string
+  isCommunity?: boolean
+  dual?: {
+    rewardPerBlock: number
+    earnLabel: string
+    endBlock: number
+  }
+}
+
 export interface PoolConfig {
   sousId: number
   earningToken: Token

@@ -1,6 +1,6 @@
 import { Toast } from '@stableflect/uikit'
 import BigNumber from 'bignumber.js'
-import { CampaignType, FarmConfig, Nft, PoolConfig, Team } from 'config/constants/types'
+import {CampaignType, FarmConfig, Nft, PoolConfig, StabConfig, Team} from 'config/constants/types'
 
 export type TranslatableText =
   | string
@@ -25,6 +25,21 @@ export interface Farm extends FarmConfig {
     earnings: BigNumber
   }
 }
+
+export interface Stab extends StabConfig {
+  tokenAmount?: BigNumber
+  quoteTokenAmount?: BigNumber
+  lpTotalInQuoteToken?: BigNumber
+  tokenPriceVsQuote?: BigNumber
+  poolWeight?: BigNumber
+  userData?: {
+    allowance: BigNumber
+    tokenBalance: BigNumber
+    stakedBalance: BigNumber
+    earnings: BigNumber
+  }
+}
+
 
 export interface Pool extends PoolConfig {
   totalStaked?: BigNumber
@@ -59,6 +74,10 @@ export interface ToastsState {
 
 export interface FarmsState {
   data: Farm[]
+}
+
+export interface StabsState {
+  data: Stab[]
 }
 
 export interface PoolsState {
@@ -132,6 +151,7 @@ export interface BlockState {
 
 export interface State {
   farms: FarmsState
+  stabs: StabsState
   toasts: ToastsState
   prices: PriceState
   pools: PoolsState
