@@ -19,7 +19,7 @@ import history from './routerHistory'
 // Only pool is included in the main bundle because of it's the most visited page
 const Home = lazy(() => import('./views/Home'))
 const Farms = lazy(() => import('./views/Farms'))
-const StabTokens = lazy(() => import('./views/StabTokens/Stabs'));
+const StabTokens = lazy(() => import('./views/StabTokens'));
 const Lottery = lazy(() => import('./views/Lottery'))
 const Ifos = lazy(() => import('./views/Ifos'))
 const NotFound = lazy(() => import('./views/NotFound'))
