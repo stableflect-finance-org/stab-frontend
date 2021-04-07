@@ -119,7 +119,7 @@ const StabCard: React.FC<StabCardProps> = ({ stab, removed, cakePrice, account }
 
   return (
     <FCard>
-      {stab.token.symbol === 'CAKE' && <StyledCardAccent />}
+      {stab.token.symbol === 'STAB' && <StyledCardAccent />}
       <CardHeading
         lpLabel={lpLabel}
         multiplier={stab.multiplier}

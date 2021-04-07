@@ -293,10 +293,7 @@ const Stabs: React.FC = () => {
     <>
       <Header>
         <Heading as="h1" size="xxl" color="secondary" mb="24px">
-          {TranslateString(674, 'Farms')}
-        </Heading>
-        <Heading size="lg" color="text">
-          {TranslateString(999, 'Stake Liquidity Pool (LP) tokens to earn.')}
+          {TranslateString(674, 'Stab Tokens')}
         </Heading>
       </Header>
       <Page>
