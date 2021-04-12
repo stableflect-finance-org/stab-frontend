@@ -7,12 +7,12 @@ import useI18n from 'hooks/useI18n'
 import BigNumber from 'bignumber.js'
 import { getFarmApy } from 'utils/apy'
 import { useFarms, usePriceCakeBusd, useGetApiPrices } from 'state/hooks'
+import { getAddress } from '../../../utils/addressHelpers'
 
 const StyledFarmStakingCard = styled(Card)`
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-
   ${({ theme }) => theme.mediaQueries.lg} {
     margin: 0;
     max-width: none;
@@ -33,7 +33,7 @@ const EarnAPYCard = () => {
       .filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X')
       .map((farm) => {
         if (farm.lpTotalInQuoteToken && prices) {
-          const quoteTokenPriceUsd = prices[farm.quoteToken.symbol.toLowerCase()]
+          const quoteTokenPriceUsd = prices[getAddress(farm.quoteToken.address).toLowerCase()]
           const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
           return getFarmApy(farm.poolWeight, cakePrice, totalLiquidity)
         }
@@ -51,8 +51,8 @@ const EarnAPYCard = () => {
           Earn up to
         </Heading>
         <CardMidContent color="#7645d9">
-          {highestApy() ? (
-            `${highestApy()}% ${TranslateString(736, 'ROI')}`
+          {highestApy ? (
+            `${highestApy}% ${TranslateString(736, 'APR')}`
           ) : (
             <Skeleton animation="pulse" variant="rect" height="44px" />
           )}

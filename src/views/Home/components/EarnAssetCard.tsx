@@ -7,6 +7,7 @@ import pools from 'config/constants/pools'
 import { Pool } from 'state/types'
 
 const StyledFarmStakingCard = styled(Card)`
+  background: linear-gradient(#53dee9, #7645d9);
   margin-left: auto;
   margin-right: auto;
   width: 100%;
@@ -19,17 +20,18 @@ const CardMidContent = styled(Heading).attrs({ size: 'xl' })`
   line-height: 44px;
 `
 const EarnAssetCard = () => {
-  const activeNonCakePools = pools.filter((pool) => !pool.isFinished && !pool.tokenName.includes('STAB'))
+  const activeNonCakePools = pools.filter((pool) => !pool.isFinished && !pool.earningToken.symbol.includes('CAKE'))
   const latestPools: Pool[] = orderBy(activeNonCakePools, ['sortOrder', 'pid'], ['desc', 'desc']).slice(0, 3)
   // Always include CAKE
-  const assets = ['STAB', ...latestPools.map((pool) => pool.tokenName)].join(', ')
+  const assets = ['CAKE', ...latestPools.map((pool) => pool.earningToken.symbol)].join(', ')
+
   return (
     <StyledFarmStakingCard>
       <CardBody>
         <Heading color="contrast" size="lg">
           Earn
         </Heading>
-        <CardMidContent color="secondary">{assets}</CardMidContent>
+        <CardMidContent color="invertedContrast">{assets}</CardMidContent>
         <Flex justifyContent="space-between">
           <Heading color="contrast" size="lg">
             in Pools
