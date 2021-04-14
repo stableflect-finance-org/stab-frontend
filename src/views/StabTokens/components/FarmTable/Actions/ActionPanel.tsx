@@ -9,14 +9,14 @@ import { CommunityTag, CoreTag, DualTag } from 'components/Tags'
 
 import HarvestAction from './HarvestAction'
 import StakedAction from './StakedAction'
-import Apr, { AprProps } from '../Apr'
-import Multiplier, { MultiplierProps } from '../Multiplier'
-import Liquidity, { LiquidityProps } from '../Liquidity'
+import CurrentPrice, { CurrentPriceProps } from '../CurrentPrice'
+import RebaseMultiplier, { RebaseMultiplierProps } from '../RebaseMultiplier'
+import CurrentGovPrice, { CurrentGovPriceProps } from '../CurrentGovPrice'
 
 export interface ActionPanelProps {
-  apr: AprProps
-  multiplier: MultiplierProps
-  liquidity: LiquidityProps
+  currentPrice: CurrentPriceProps
+  rebaseMultiplier: RebaseMultiplierProps
+  currentGovPrice: CurrentGovPriceProps
   details: StabWithStakedValue
 }
 
@@ -100,7 +100,7 @@ const ValueWrapper = styled.div`
   margin: 4px 0px;
 `
 
-const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, multiplier, liquidity }) => {
+const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, currentPrice, rebaseMultiplier, currentGovPrice }) => {
   const farm = details
 
   const TranslateString = useI18n()
@@ -135,16 +135,16 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, 
       </InfoContainer>
       <ValueContainer>
         <ValueWrapper>
-          <Text>{TranslateString(736, 'APR')}</Text>
-          <Apr {...apr} />
+          <Text>{TranslateString(736, 'Current Price')}</Text>
+          <CurrentPrice {...currentPrice} />
         </ValueWrapper>
         <ValueWrapper>
-          <Text>{TranslateString(999, 'Multiplier')}</Text>
-          <Multiplier {...multiplier} />
+          <Text>{TranslateString(999, 'Rebase Multiplier')}</Text>
+          <RebaseMultiplier {...rebaseMultiplier} />
         </ValueWrapper>
         <ValueWrapper>
-          <Text>{TranslateString(999, 'Liquidity')}</Text>
-          <Liquidity {...liquidity} />
+          <Text>{TranslateString(999, 'Current Gov Price')}</Text>
+          <CurrentGovPrice {...currentGovPrice} />
         </ValueWrapper>
       </ValueContainer>
       <ActionContainer>

@@ -5,8 +5,8 @@ import useI18n from 'hooks/useI18n'
 
 import Tooltip from '../Tooltip/Tooltip'
 
-export interface MultiplierProps {
-  multiplier: string
+export interface RebaseMultiplierProps {
+  rebaseMultiplier: string
 }
 
 const MultiplierWrapper = styled.div`
@@ -34,8 +34,8 @@ const Container = styled.div`
   }
 `
 
-const Multiplier: React.FunctionComponent<MultiplierProps> = ({ multiplier }) => {
-  const displayMultiplier = multiplier ? multiplier.toLowerCase() : '-'
+const RebaseMultiplier: React.FunctionComponent<RebaseMultiplierProps> = ({ rebaseMultiplier }) => {
+  const displayMultiplier = rebaseMultiplier ? rebaseMultiplier.toLowerCase() : '-'
   const TranslateString = useI18n()
 
   return (
@@ -60,4 +60,4 @@ const Multiplier: React.FunctionComponent<MultiplierProps> = ({ multiplier }) =>
   )
 }
 
-export default Multiplier
+export default RebaseMultiplier

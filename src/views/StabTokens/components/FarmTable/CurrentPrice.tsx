@@ -7,9 +7,9 @@ import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import useI18n from 'hooks/useI18n'
 
-export interface AprProps {
+export interface CurrentPriceProps {
   value: string
-  multiplier: string
+  rebaseMultiplier: string
   lpLabel: string
   tokenAddress?: Address
   quoteTokenAddress?: Address
@@ -40,7 +40,7 @@ const AprWrapper = styled.div`
   text-align: left;
 `
 
-const Apr: React.FC<AprProps> = ({
+const CurrentPrice: React.FC<CurrentPriceProps> = ({
   value,
   lpLabel,
   tokenAddress,
@@ -73,4 +73,4 @@ const Apr: React.FC<AprProps> = ({
   )
 }
 
-export default Apr
+export default CurrentPrice

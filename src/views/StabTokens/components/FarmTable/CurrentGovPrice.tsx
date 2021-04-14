@@ -5,8 +5,8 @@ import useI18n from 'hooks/useI18n'
 
 import Tooltip from '../Tooltip/Tooltip'
 
-export interface LiquidityProps {
-  liquidity: number
+export interface CurrentGovPriceProps {
+  currentGovPrice: number
 }
 
 const LiquidityWrapper = styled.div`
@@ -34,9 +34,9 @@ const Container = styled.div`
   }
 `
 
-const Liquidity: React.FunctionComponent<LiquidityProps> = ({ liquidity }) => {
-  const displayLiquidity = liquidity
-    ? `$${Number(liquidity).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+const CurrentGovPrice: React.FunctionComponent<CurrentGovPriceProps> = ({ currentGovPrice }) => {
+  const displayLiquidity = currentGovPrice
+    ? `$${Number(currentGovPrice).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
   const TranslateString = useI18n()
 
@@ -52,4 +52,4 @@ const Liquidity: React.FunctionComponent<LiquidityProps> = ({ liquidity }) => {
   )
 }
 
-export default Liquidity
+export default CurrentGovPrice

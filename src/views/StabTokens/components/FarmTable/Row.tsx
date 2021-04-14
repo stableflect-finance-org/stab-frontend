@@ -4,32 +4,32 @@ import { StabWithStakedValue } from 'views/StabTokens/components/StabCard/StabCa
 import { useMatchBreakpoints } from '@stableflect/uikit'
 import useI18n from 'hooks/useI18n'
 
-import Apr, { AprProps } from './Apr'
+import CurrentPrice, { CurrentPriceProps } from './CurrentPrice'
 import Farm, { FarmProps } from './Farm'
-import Earned, { EarnedProps } from './Earned'
+import Amount, { AmountProps } from './AmountSpan'
 import Details from './Details'
-import Multiplier, { MultiplierProps } from './Multiplier'
-import Liquidity, { LiquidityProps } from './Liquidity'
+import RebaseMultiplier, { RebaseMultiplierProps } from './RebaseMultiplier'
+import CurrentGovPrice, { CurrentGovPriceProps } from './CurrentGovPrice'
 import ActionPanel from './Actions/ActionPanel'
 import CellLayout from './CellLayout'
 import { DesktopColumnSchema, MobileColumnSchema } from '../types'
 
-export interface RowProps {
-  apr: AprProps
+export interface StabRowProps {
+  currentPrice: CurrentPriceProps
   farm: FarmProps
-  earned: EarnedProps
-  multiplier: MultiplierProps
-  liquidity: LiquidityProps
+  yourTokens: AmountProps
+  rebaseMultiplier: RebaseMultiplierProps
+  currentGovPrice: CurrentGovPriceProps
   details: StabWithStakedValue
 }
 
 const cells = {
-  apr: Apr,
+  currentPrice: CurrentPrice,
   farm: Farm,
-  earned: Earned,
+  yourTokens: Amount,
   details: Details,
-  multiplier: Multiplier,
-  liquidity: Liquidity,
+  rebaseMultiplier: RebaseMultiplier,
+  currentGovPrice: CurrentGovPrice,
 }
 
 const CellInner = styled.div`
@@ -62,7 +62,7 @@ const FarmMobileCell = styled.td`
   padding-top: 24px;
 `
 
-const Row: React.FunctionComponent<RowProps> = (props) => {
+const Row: React.FunctionComponent<StabRowProps> = (props) => {
   const { details } = props
   const [actionPanelToggled, setActionPanelToggled] = useState(false)
   const TranslateString = useI18n()
@@ -98,12 +98,12 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                     </CellInner>
                   </td>
                 )
-              case 'apr':
+              case 'current_price':
                 return (
                   <td key={key}>
                     <CellInner>
-                      <CellLayout label={TranslateString(736, 'APR')}>
-                        <Apr {...props.apr} hideButton={isMobile} />
+                      <CellLayout label={TranslateString(736, 'Amount')}>
+                        <CurrentPrice {...props.currentPrice} hideButton={isMobile} />
                       </CellLayout>
                     </CellInner>
                   </td>
@@ -138,13 +138,13 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
           </tr>
           <tr>
             <EarnedMobileCell>
-              <CellLayout label={TranslateString(1072, 'Earned')}>
-                <Earned {...props.earned} />
+              <CellLayout label={TranslateString(1072, 'Amount')}>
+                <Amount {...props.yourTokens} />
               </CellLayout>
             </EarnedMobileCell>
             <AprMobileCell>
-              <CellLayout label={TranslateString(736, 'APR')}>
-                <Apr {...props.apr} hideButton />
+              <CellLayout label={TranslateString(736, 'Current Price')}>
+                <CurrentPrice {...props.currentPrice} hideButton />
               </CellLayout>
             </AprMobileCell>
           </tr>

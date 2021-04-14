@@ -20,7 +20,7 @@ import StabCard, { StabWithStakedValue } from './components/StabCard/StabCard'
 import Table from './components/FarmTable/FarmTable'
 import FarmTabButtons from './components/FarmTabButtons'
 import SearchInput from './components/SearchInput'
-import { RowProps } from './components/FarmTable/Row'
+import { StabRowProps } from './components/FarmTable/Row'
 import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
 import Select, { OptionProps } from './components/Select/Select'
@@ -173,7 +173,7 @@ const Stabs: React.FC = () => {
         const totalLiquidity = new BigNumber(stab.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
         const apy = isActive ? getFarmApy(stab.poolWeight, cakePrice, totalLiquidity) : 0
 
-        return { ...stab, apy, liquidity: totalLiquidity }
+        return { ...stab, apy, currentGovPrice: totalLiquidity }
       })
 
       if (query) {
@@ -205,11 +205,11 @@ const Stabs: React.FC = () => {
     const tokenAddress = token.address
     const quoteTokenAddress = quoteToken.address
     const lpLabel = stab.lpSymbol && stab.lpSymbol.split(' ')[0].toUpperCase().replace('PANCAKE', '')
-
-    const row: RowProps = {
-      apr: {
+    // TODO anchaj add own types and use them
+    const row: StabRowProps = {
+      currentPrice: {
         value: stab.apy && stab.apy.toLocaleString('en-US', { maximumFractionDigits: 2 }),
-        multiplier: stab.multiplier,
+        rebaseMultiplier: stab.multiplier,
         lpLabel,
         tokenAddress,
         quoteTokenAddress,
@@ -221,15 +221,15 @@ const Stabs: React.FC = () => {
         label: lpLabel,
         pid: stab.pid,
       },
-      earned: {
+      yourTokens: {
         earnings: stab.userData ? getBalanceNumber(new BigNumber(stab.userData.earnings)) : null,
         pid: stab.pid,
       },
-      liquidity: {
-        liquidity: stab.liquidity,
+      currentGovPrice: {
+        currentGovPrice: stab.liquidity,
       },
-      multiplier: {
-        multiplier: stab.multiplier,
+      rebaseMultiplier: {
+        rebaseMultiplier: stab.multiplier,
       },
       details: stab,
     }
@@ -245,18 +245,18 @@ const Stabs: React.FC = () => {
         id: column.id,
         name: column.name,
         label: column.label,
-        sort: (a: RowType<RowProps>, b: RowType<RowProps>) => {
+        sort: (a: RowType<StabRowProps>, b: RowType<StabRowProps>) => {
           switch (column.name) {
             case 'farm':
               return b.id - a.id
-            case 'apr':
-              if (a.original.apr.value && b.original.apr.value) {
-                return Number(a.original.apr.value) - Number(b.original.apr.value)
+            case 'currentPrice':
+              if (a.original.currentPrice.value && b.original.currentPrice.value) {
+                return Number(a.original.currentPrice.value) - Number(b.original.currentPrice.value)
               }
 
               return 0
-            case 'earned':
-              return a.original.earned.earnings - b.original.earned.earnings
+            case 'yourTokens':
+              return a.original.yourTokens.earnings - b.original.yourTokens.earnings
             default:
               return 1
           }
@@ -316,20 +316,20 @@ const Stabs: React.FC = () => {
                     value: 'hot',
                   },
                   {
-                    label: 'APR',
-                    value: 'apr',
+                    label: 'Current Price',
+                    value: 'currentPrice',
                   },
                   {
-                    label: 'Multiplier',
-                    value: 'multiplier',
+                    label: 'Rebase Multiplier',
+                    value: 'rebaseMultiplier',
                   },
                   {
-                    label: 'Earned',
-                    value: 'earned',
+                    label: 'Amount',
+                    value: 'yourTokens',
                   },
                   {
-                    label: 'Liquidity',
-                    value: 'liquidity',
+                    label: 'Current Gov Price',
+                    value: 'currentGovPrice',
                   },
                 ]}
                 onChange={handleSortOptionChange}

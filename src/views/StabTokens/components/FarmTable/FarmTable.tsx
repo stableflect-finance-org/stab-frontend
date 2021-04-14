@@ -3,11 +3,11 @@ import styled from 'styled-components'
 import { useTable, Button, ChevronUpIcon, ColumnType } from '@stableflect/uikit'
 import useI18n from 'hooks/useI18n'
 
-import Row, { RowProps } from './Row'
+import Row, { StabRowProps } from './Row'
 
 export interface ITableProps {
-  data: RowProps[]
-  columns: ColumnType<RowProps>[]
+  data: StabRowProps[]
+  columns: ColumnType<StabRowProps>[]
   sortColumn?: string
 }
 
